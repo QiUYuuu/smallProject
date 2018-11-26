@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <style>
+        ul li a{
+            text-decoration: none;
+            color: black;
+        }
+        ul {
+            list-style: none;
+        }
+        .level2 {
+            display: none;
+        }
+        .current{
+            display: block;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="sr" name="input" /><label for="sr">我已经同意上面的条款</label>
+    <div>
+        <ul class="menu">
+            <li class="level1">
+                <a href="#2">衬衫</a>
+                <ul class="level2">
+                    <li><a href="#2">衬衫</a></li>
+                    <li><a href="#2">衬衫</a></li>
+                    <li><a href="#2">衬衫</a></li>
+                    <li><a href="#2">衬衫</a></li>
+                </ul>
+            </li>
+            <li class="level1">
+                <a href="#2">T恤</a>
+                <ul class="level2">
+                    <li><a href="#2">T恤</a></li>
+                    <li><a href="#2">T恤</a></li>
+                    <li><a href="#2">T恤</a></li>
+                    <li><a href="#2">T恤</a></li>
+                </ul>
+            </li>
+            <li class="level1">
+                <a href="#2">裤子</a>
+                <ul class="level2">
+                    <li><a href="#2">T裤子</a></li>
+                    <li><a href="#2">T裤子</a></li>
+                    <li><a href="#2">T裤子</a></li>
+                    <li><a href="#2">T裤子</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script>
+        $(".level1 > a").click(function () {
+            $(this).addClass("current")
+                .next().show()
+                .parent().siblings().children("a").removeClass("current")
+                .next().hide();
+            return false;
+        });
+        $(document).ready(function () {
+            let $sr = $("#sr");
+            $sr.click(function () {
+                if ($sr.is(":checked")) {
+                    alert("感谢您的支持！");
+                }
+            })
+        })
+    </script>
+</body>
+</html>

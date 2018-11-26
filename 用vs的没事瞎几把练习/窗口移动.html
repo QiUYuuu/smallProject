@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <!--好像不对-->
+    <button id="dianji">点击</button>
+    <button id="dd">点击2</button>
+    <button id="ddd">点击3</button>
+    <script>
+        let oBtn1 = document.getElementById("dianji"),
+            oBtn2 = document.getElementById("dd"),
+            oBtn3 = document.getElementById("ddd"),
+            result = prompt("what is your name?","")
+            ;
+
+        oBtn1.onclick = function () {
+
+            //获取浏览器窗口/可见视口的尺寸
+            let x = window.innerWidth;
+            let y = window.innerHeight;
+
+            alert(x);
+            alert(y);
+            window.moveTo(500, 600);
+        }
+
+        oBtn2.onclick = function () {
+             //这个好像也不好使
+            window.resizeTo(900, 900);
+            //打开一个新的窗口
+            window.open("http://www.4399.com", "wroxWindow", "height=600,width=600,top=20,left=20,resizeable=yes");
+        }
+
+        //相比 alert 有了取消按钮 能够根据用户点击 yes or no 来执行相对应的操作  返回的是一个布尔值 ok返回true  cancle返回false
+        oBtn3.onclick = function () {
+            if (confirm("你是傻逼吗？？？？")) {
+                alert("还算有自知之明，你是傻逼！！！");
+            } else {
+                alert("别不承认，你就是个傻逼");
+            }
+        }
+
+        //提示框 提示用户输入一些文本
+        if (result != null) {
+            alert("welcome" + result);
+        }
+    </script>
+</body>
+</html>

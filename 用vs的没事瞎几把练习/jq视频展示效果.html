@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        li{
+            list-style: none;
+        }
+        div.v_show{
+            position: relative;
+            top: 50px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 1000px;
+            height: 275px;
+            border: 1px solid red;
+            overflow: hidden;
+            user-select: none;
+        }
+        div.v_caption{
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 100%;
+            height: 50px;
+            background-color: aliceblue;
+        }
+        div.v_caption>em{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 20px;
+            height: 24px;
+            margin: auto;
+
+        }
+        h2.cartoon{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            height: 34px;
+            margin: auto;
+        }
+        div.highlight_tip {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 130px;
+            height: 24px;
+            margin: auto;
+        }
+        div.change_btn{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 200px;
+            height: 24px;
+            margin: auto;
+        }
+        div.change_btn>span{
+            display: inline-block;
+            cursor: pointer;
+            background-color: aquamarine;
+            width: 30px;
+            height: 24px;
+            text-align: center;
+        }
+        img{
+            width: 200px;
+            height: 150px;
+        }
+        div.v_content{
+            position: absolute;
+            bottom: 37px;
+            width: 1000%;
+            height: 60%;
+        }
+        div.v_content_list{
+            position: absolute;
+        }
+        div.v_content_list ul li {
+            float: left;
+            margin: 5px 25px;
+        }
+        .current {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="v_show">
+        <div class="v_caption">
+            <h2 class="cartoon" title="卡通动漫">卡通动漫</h2>
+            <div class="highlight_tip">
+                <span class="current">&#10026</span><span>&#10026</span><span>&#10026</span>
+            </div>
+            <div class="change_btn">
+                <span class="prev">&#8592</span>
+                <span class="next">&#8594</span>
+            </div>
+            <em><a href="#2">更多>></a></em>
+        </div>
+        <div class="v_content">
+            <div class="v_content_list">
+                <ul>
+                    <li><a href="#2"><img src="img/1.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/2.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/3.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/4.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/5.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/1.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/2.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/3.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/4.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/5.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/1.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                    <li><a href="#2"><img src="img/2.jpg" alt="英雄联盟" /></a><h4><a href="#2">英雄联盟</a></h4><span>播放<em>28,276</em></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            let page = 1,
+                i = 4;
+            $("span.next").click(function () {
+                let $parent = $(this).parents("div.v_show"),
+                    $v_show = $parent.find("div.v_content_list"),
+                    $v_content = $parent.find("div.v_content"),
+                    v_width = $parent.width(),
+                    len = $v_show.find("li").length,
+                    page_count = Math.ceil(len / i);
+                if (!$v_show.is(":animated")) {
+                    if (page_count == page) {
+                        $v_show.animate({ left: '0' }, "slow");
+                        page = 1;
+                    } else {
+                        $v_show.animate({ left: "-=" + v_width }, "slow");
+                        page++;
+                    }
+                    $parent.find("span").eq(page - 1).addClass("current")
+                        .siblings().removeClass("current");
+                }
+            });
+            $("span.prev").click(function () {
+                let $parent = $(this).parents("div.v_show"),
+                    $v_show = $parent.find("div.v_content_list"),
+                    $v_content = $parent.find("div.v_content"),
+                    v_width = $parent.width(),
+                    len = $v_show.find("li").length,
+                        page_count = Math.ceil(len / i);
+                if (!$v_show.is(":animated")) {
+                    if (page == 1) {
+                        $v_show.animate({ left: "-=" + v_width * (page_count - 1) }, "slow");
+                        page = page_count;
+                    } else {
+                        $v_show.animate({ left: "+=" + v_width }, "slow");
+                        page--;
+                    }
+                    $parent.find("span").eq(page - 1).addClass("current")
+                        .siblings().removeClass("current");
+                }
+            })
+        })
+    </script>
+</body>
+</html>

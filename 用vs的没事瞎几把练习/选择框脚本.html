@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+        <select name="location" id="selLocation">
+            <option value="Sunnyvale,CA">Sunnyvale</option>
+            <option value="Los Angles,CA">Los Angles</option>
+            <option value="Mountain">Mountain View</option>
+            <option value="">China</option>
+            <option>Australia</option>
+        </select>
+    </form>
+    <script>
+        let selectbox = document.forms[0].elements["location"],
+            opintions = document.querySelectorAll("#selLocation option");
+        selectbox.addEventListener("change", function () {
+            [...opintions].forEach((dom,index) => {
+                let text = dom.text;
+                let value = dom.value;
+                console.log(text);
+                console.log(value);
+            })
+        }, true);
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <object height="0" width="0" data="Blue - Fly By II [mqms2].mp3"></object>
+    <p id="p"><b>Hello</b> world!</p>
+    <script>
+        let p1 = document.getElementById("p"),
+            helloNode = p1.firstChild.firstChild,
+            worldNode = p1.lastChild,
+            range = document.createRange();
+        range.setStart(helloNode, 2);
+        range.setEnd(worldNode, 3);
+
+        //删除选中的选区
+        //range.deleteContents();
+
+        //extractContents()方法也能够删除选区，但是这个方法会返回这个文档片段 可以利用这个返回值再向其他地方添加这个文档
+        //let franment = range.extractContents();
+        //document.body.appendChild(franment);
+
+        //复制，创建范围对象的副本  只是副本，不是实际的节点
+        //let fragment = range.cloneContents();
+        //document.body.appendChild(fragment);
+
+        //向范围中插入节点，在范围开始的位置之前插入，而且会保留原始HTML的元素
+        //let span = document.createElement("span");
+        //span.style.color = "red";
+        //span.appendChild(document.createTextNode("Inserted text"));
+        //range.insertNode(span);
+
+        //环绕内容的节点
+        //range.selectNode(helloNode);
+        //let span = document.createElement("span");
+        //span.style.backgroundColor = "blue";
+        //range.surroundContents(span);
+
+        //折叠内容    不知道为啥 好像没折叠啊
+        //range.collapse(false);
+        //alert(range.collapsed);
+
+        //比较范围,compareBoundaryPoints()函数接收一个比较的方式和比较的范围
+        //let range1 = document.createRange(),
+            //range2 = document.createRange();
+        //range1.selectNodeContents(p1);
+        //range2.selectNodeContents(p1);
+        //range2.setEndBefore(p1.lastChild);
+        //console.log(range1.compareBoundaryPoints(Range.START_TO_START,range2));
+        //console.log(range1.compareBoundaryPoints(Range.END_TO_END,range2));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas width="200" height="200" id="drawing">A drawing of something</canvas>
+    <canvas width="200" height="200" id="drawing1">A drawing of something</canvas>
+    <canvas width="200" height="200" id="drawing2">A drawing of something</canvas>
+    <canvas width="200" height="200" id="drawing3">A drawing of something</canvas>
+    <img style="display:none" src="caigou.jpg" />;
+    <script>
+        let drawing = document.getElementById("drawing");
+        let drawing1 = document.getElementById("drawing1");
+        let drawing2 = document.getElementById("drawing2");
+        let drawing3 = document.getElementById("drawing3");
+
+        //如果drawing支持getContext方法
+        if (drawing.getContext) {
+            let context = drawing.getContext("2d");
+
+            //设置阴影
+            context.shadowOffsetX = 5;
+            context.shadowOffsetY = 5;
+            context.shadowBlur = 4;
+            context.shadowColor = "rgba(0,0,0,0.5)";
+
+            context.fillStyle = "red";
+            //fillRect会在矩形中自动添加fillstyle制定的颜色    加收的四个参数为矩形的  x坐标 ,y坐标, 矩形的宽和高
+            context.fillRect(10, 10, 50, 50);
+            context.fillStyle = "rgba(0,0,255,0.5)";
+            context.fillRect(30, 30, 50, 50);
+
+            //strokeRect会用strokeStyle制定的颜色描边，矩形内部不填充颜色
+            context.strokeStyle = "red";
+            context.strokeRect(65, 65, 50, 50);
+
+            //清儒某一部分的区域
+            context.clearRect(40, 40, 10, 10);
+
+
+            //取得canvas画布中的图片并添加到body中
+            //let imgURL = drawing.toDataURL("img/png");
+            //let img = document.createElement("img");
+            //img.src = imgURL;
+            //document.body.appendChild(img);
+        }
+
+        if (drawing1.getContext) {
+            let context = drawing1.getContext("2d");
+            //开始绘制
+            context.beginPath();
+
+            //绘制外圆
+            context.arc(100, 100, 99, 0, 2 * Math.PI, false);
+
+            //绘制内圆，绘制之前先把绘制路径移动到内圆的某一点，防止绘制出多余的线条
+            context.moveTo(194, 100);
+            context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+
+            context.translate(100, 100);
+            context.rotate(1);
+
+            //绘制时针和分针
+            context.moveTo(0, 0);
+            context.lineTo(0, -70);
+
+            context.moveTo(0, 0);
+            context.lineTo(-65, 0);
+
+            context.font = "bold 14px Afial";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText("12", 0, -80);
+
+
+            //最后描边路径
+            context.stroke();
+        }
+        if (drawing2.getContext) {
+            let context = drawing2.getContext("2d");
+            let image = document.images[0];
+            context.drawImage(image, 10, 10);
+        }
+
+        if (drawing3.getContext) {
+            let context = drawing3.getContext("2d");
+
+            let grandius = context.createRadialGradient(55, 55, 10, 55,55,30);
+            grandius.addColorStop(0, "red");
+            grandius.addColorStop(1, "blue");
+            context.fillStyle = "orange";
+            context.fillRect(10, 10, 50, 50);
+
+            //修改全局透明度
+            context.globalAlpha = 0.5;
+
+            //设置合成方法
+            context.globalCompositeOperation = "source-in";
+
+            context.fillStyle = grandius;
+            context.fillRect(30, 30, 50, 50);
+
+            //重置全局透明度
+            context.globalAlpha = 0;
+        }
+    </script>
+</body>
+</html>

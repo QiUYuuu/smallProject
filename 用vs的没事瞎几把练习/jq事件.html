@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div id="div" style="border: 1px solid red;width: 100px;height: 100px"></div>
+    <script>
+        $("#div").click(function (event) {
+            alert("Current mouse position: " + event.pageX + "," + event.pageY);
+        })
+
+
+        //trigger自定义事件
+        $("#div").on("myClick", function (event, msg1, msg2) {
+            $(this).append("<p>" + msg1 + msg2 + "</p>");
+        })
+        $("#div").trigger("myClick", ["我的自定义", "事件"]);
+    </script>
+</body>
+</html>

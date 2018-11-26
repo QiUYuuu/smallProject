@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <style>
+        ul li{
+            float: left;
+            width: 100px;
+            height: 100px;
+            list-style: none;
+            margin: 10px 15px;
+        }
+        ul li img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="img/1.jpg" class="tooltip" title="苹果1 "><img src="img/1.jpg" /></a></li>
+        <li><a href="img/2.jpg" class="tooltip" title="苹果2 "><img src="img/2.jpg" /></a></li>
+        <li><a href="img/3.jpg" class="tooltip" title="苹果3 "><img src="img/3.jpg" /></a></li>
+        <li><a href="img/4.jpg" class="tooltip" title="苹果4 "><img src="img/4.jpg" /></a></li>
+    </ul>
+    <script>
+        $(function () {
+            let x = 10,
+                y = 20;
+            $("a.tooltip").mouseover(function (e) {
+                this.myTitle = this.title;
+                this.title = "";
+                let imgTitle = this.myTitle ? "<br/>" + this.myTitle : "";
+                let tooltip = `<div id="tooltip"><img src=${this.href} alt="产品预览图" />${imgTitle}</div>`;
+                $("body").append(tooltip);
+                $("#tooltip").css({
+                    "position": "absolute",
+                    "top": (e.pageY + y) + "px",
+                    "left": (e.pageX + x) + "px",
+                    "backgroundColor": "pink"
+                }).show("fast");
+            }).mouseout(function () {
+                this.title = this.myTitle;
+                $("#tooltip").remove();
+            }).mousemove(function (e) {
+                $("#tooltip").css({
+                    "position": "absolute",
+                    "top": (e.pageY + y) + "px",
+                    "left": (e.pageX + x) + "px",
+                    "backgroundColor": "pink"
+                });
+            });
+        })
+    </script>
+</body>
+</html>

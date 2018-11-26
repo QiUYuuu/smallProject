@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="addHandler().js"></script>
+</head>
+<body>
+    <ul id="myList">
+        <li id="goSomewhere">Go Somewhere</li>
+        <li id="doSomething">Do Something</li>
+        <li id="sayhi">Say Hi!</li>
+    </ul>
+
+    <script>
+        let list = document.getElementById("myList");
+        EventUtil.addHandler(list, "click", function (event) {
+            eval = EventUtil.getEvent(event);
+            let target = EventUtil.getTarget(event);
+            switch (target.id) {
+                case "doSomething":
+                    document.title = "I have changed document's title";
+                    break;
+                case "goSomewhere":
+                    location.href = "http://www.4399.com";
+                    break;
+                case "sayhi":
+                    alert("Hi");
+                    break;
+            }
+        })
+    </script>
+</body>
+</html>

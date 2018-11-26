@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="wrap"><div>00</div><div>11</div><div>22</div><div>33</div>
+    </div>
+    <script>
+        (function () {
+            let oDiv = document.querySelectorAll("#wrap div"),
+                oWrap = document.getElementById("wrap"),
+                aDiv = document.createTextNode("沉兮")
+                ;
+            console.log(oWrap.childNodes);
+            //在最后添加子节点
+            //let returnNode = oWrap.appendChild(aDiv);
+
+            //在任何位置添加子节点  在第三个节点之前插入，那么这个插入的节点顺理成章的就成为第二个节点,返回要插入的节点(aDiv)
+            //let returnNode = oWrap.insertBefore(aDiv, oDiv[2]);
+            //console.log(returnNode);
+            //alert(returnNode == oWrap.childNodes[1]);  //所以这个是返回true
+
+            //替换节点，将要插入的节点(aDiv)替换为被替换的节点(oDiv[2])，返回的是被替换的节点(oDiv[2])
+            //console.log(oDiv[2]);
+            //let returnNode = oWrap.replaceChild(aDiv, oDiv[2]);
+            //console.log(returnNode);
+            //alert(returnNode == oWrap.childNodes[3]);    //这个已经被替换的节点在文档仍然存在，但是已经没有这个节点的位置了，所以返回false
+
+            //删除节点  返回的是被删除的节点
+            //let returnNode = oWrap.removeChild(oDiv[2]);   //这个已经被替换的节点在文档仍然存在，但是已经没有这个节点的位置了
+            //console.log(returnNode);  
+
+            //复制节点  接收一个布尔值参数  但是不会复制例如事件处理程序等js属性
+            //let deepClone = oWrap.cloneNode(true);
+            //let sgallowClone = oWrap.cloneNode(false);
+            //参数为true时，复制节点及整个节点树
+            //console.log(deepClone.childNodes.length, deepClone);
+            //参数为false时，只复制节点
+            //console.log(sgallowClone.childNodes.length, sgallowClone);
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <style>
+        #wrap{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+            border: 2px solid red;
+        }
+        ul li{
+            float: left;
+            width: 70px;
+            height: 35px;
+            list-style: none;
+            margin: 15px 20px;
+            border: 1px dashed blue;
+            line-height: 35px;
+            text-align: center;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        #showmore {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            width: 100px;
+            height: 35px;
+            margin: auto;
+            border: 1px dashed red;
+            line-height: 35px;
+            text-align: center;
+        }
+        .promoted{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li><a href="#2">佳能</a></li>
+            <li><a href="#2">明基</a></li>
+            <li><a href="#2">尼康</a></li>
+            <li><a href="#2">三洋</a></li>
+            <li><a href="#2">微米</a></li>
+            <li><a href="#2">佳能</a></li>
+            <li><a href="#2">爱国者</a></li>
+            <li><a href="#2">德志杰</a></li>
+            <li><a href="#2">佳能</a></li>
+            <li><a href="#2">联想</a></li>
+            <li><a href="#2">佳能</a></li>
+            <li><a href="#2">索尼</a></li>
+            <li><a href="#2">佳能</a></li>
+            <li><a href="#2">三星</a></li>
+            <li><a href="#2">富士</a></li>
+            <li><a href="#2">宾得</a></li>
+            <li><a href="#2">理光</a></li>
+            <li><a href="#2">其他品牌</a></li>
+        </ul>
+        <div id="showmore">
+            <a href="#2"><span>显示全部品牌</span></a>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            let $hidediv = $("ul li:gt(5):not(:last)");
+            $hidediv.hide();
+            let $btn = $("#showmore>a");
+            $btn.click(function () {
+                if ($hidediv.is(":visible")) {
+                    $hidediv.hide();
+                    $(this).find("span")
+                        .css("background-color", "orange")
+                        .text("显示全部品牌");
+                    $("ul li").removeClass("promoted");
+                } else {
+                    $hidediv.show();
+                    $(this).find("span")
+                        .css("background", "pink")
+                        .text("精简显示品牌");
+                    $("ul li").filter(":contains('富士'),:contains('宾得'),:contains('索尼')").addClass("promoted");
+                }
+                return false;
+            })
+        })
+    </script>
+</body>
+</html>

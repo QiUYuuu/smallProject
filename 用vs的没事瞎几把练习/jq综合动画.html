@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div id="div" style="position: relative; width: 100px;height: 100px;background-color: blue"></div>
+    <script>
+        $(function () {
+            let div = $("#div");
+            div.css("opacity", "0.5");
+            div.click(function () {
+                $(this).animate({ left: "400px", height: "200px", opacity: "1" }, 3000)
+                    .animate({ top: "200px", width: "200px" }, 3000)
+                    .fadeOut("slow");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>document.write() Example</title>
+    <style>
+        #idd{
+            width: 500px;
+            height: 500px;
+            margin: 20px auto;
+            background-color: goldenrod;
+        }
+    </style>
+</head>
+<body>
+    <p>The current data and time is: </p>
+    <ul id="myList">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+        let oP = document.querySelector("p"),
+            oList = document.querySelector("ul")
+        ;
+        document.write("<strong>" + (new Date()).toString() + "</strong>");
+
+        let divv = document.createElement("div");
+        divv.id = "idd";
+        oP.onclick = function () {
+            document.body.appendChild(divv);
+            console.log(oList.childNodes);
+        }
+    </script>
+</body>
+</html>

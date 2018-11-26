@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #div{
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div" style="background-color: red;border:1px solid pink;"></div>
+    <script>
+        let Div = document.getElementById("div");
+        //返回经过计算后的div的属性值
+        let comstyle = document.defaultView.getComputedStyle(Div, null),
+            supportDOM2StyleSheets = document.implementation.hasFeature("StyleSheets", "2.0");
+            ;
+
+        console.log(comstyle.backgroundColor);
+        console.log(comstyle.width);
+        console.log(comstyle.border);
+        alert(supportDOM2StyleSheets); 
+    </script>
+</body>
+</html>

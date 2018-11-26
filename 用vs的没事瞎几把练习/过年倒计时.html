@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        p{
+            font-size:25px;
+            text-align:center;
+        }
+        p span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        距离过年还有 0 天 0 小时 0 分 0 秒
+    </p>
+    <script>
+        (function () {
+            let Op = document.getElementsByTagName("p");
+            let newYear = new Date(2019, 2, 5);
+            function fn() {
+                let x = new Date();
+                let DD = newYear - x;
+                let Day = Math.floor(DD / 1000 / 60 / 60 / 24);
+                let Hour = Math.floor(DD / 1000 / 60 /60 % 24);
+                let Minutes = Math.floor(DD / 1000 / 60 % 60);
+                let Scend = Math.floor(DD / 1000 % 60);
+                if (Day < 10) Day = "0" + Day;
+                if (Hour < 10) Hour = "0" + Hour;
+                if (Minutes < 10) Minutes = "0" + Minutes;
+                if (Scend < 10) Scend = "0" + Scend;
+                Op[0].innerHTML = `距离过年还有 <span>${Day}</span> 天 <span>${Hour}</span> 小时 <span>${Minutes}</span> 分 <span>${Scend}</span> 秒`;
+            }
+            fn();
+            setInterval(fn , 1000);
+        })();
+    </script>
+</body>
+</html>

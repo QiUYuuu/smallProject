@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="text" pattern="\d+" name="count" id="input" />
+    <script>
+        let form = document.getElementById("input");
+        form.focus();
+        document.onclick = function () {
+            if (form.checkValidity()) {
+                alert("字段有效");
+            } else {
+                alert("字段无效");
+            }
+        }
+    </script>
+</body>
+</html>

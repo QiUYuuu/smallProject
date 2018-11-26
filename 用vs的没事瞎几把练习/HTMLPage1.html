@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="addHandler().js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        let a = document.implementation.hasFeature("HTMLEvents", "2.0");
+        let b = document.implementation.hasFeature("UIEvents", "3.0");
+
+        EventUtil.addHandler(window, "load", function (event) {
+            //alert("Loaded!");
+        });
+        EventUtil.addHandler(window, "unload", function (event) {
+            alert("Unloaded!");
+        });
+        EventUtil.addHandler(document, "click", function (event) {
+            event = EventUtil.getEvent(event);
+            console.log(`Page coordinates: ${event.pageX},${event.pageY}`);
+            let keys = new Array();
+            if (event.shiftKey) {
+                console.log("shift");
+                keys.push("shift");
+            }
+            if (event.ctrlKey) {
+                console.log("ctrl");
+                keys.push("ctrl");
+            }
+            if (event.altKey) {
+                console.log("alt");
+                keys.push("alt");
+            }
+            if (event.metaKey) {
+                console.log("meta");
+                keys.push("meta");
+            }
+            alert(`Keys:${keys.join(",")}`);
+        });
+        EventUtil.addHandler(document, "mousedown", function (event) {
+            event = EventUtil.getEvent(event);
+            alert(EventUtil.getButton(event));
+        });
+        EventUtil.addHandler(document,"mousewheel",function (event) {
+            event = EventUtil.getEvent(event);
+            alert(event.wheelDelta);
+        });
+    </script>
+</body>
+</html>

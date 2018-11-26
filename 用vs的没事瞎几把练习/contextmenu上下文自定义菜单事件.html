@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #muDiv{
+            position: relative;
+            width: 350px;
+            height: 350px;
+            background-color: aquamarine;
+            margin: 50px auto;
+        }
+    </style>
+    <script src="addHandler().js"></script>
+</head>
+<body>
+    <div id="muDiv">Right click or Ctrl+click me to get a custom context menu.
+    Click anywhere else to get the default context menu.</div>
+    <ul id="muMenu" style="position: absolute;visibility:hidden;background-color:silver">
+        <li><a href="http://www.4399.com">4399小游戏</a></li>
+        <li><a href="http://www.17173.com">17173</a></li>
+        <li><a href="http://www.yahoo.com">Yhhoo!</a></li>
+    </ul>
+    <script>
+        EventUtil.addHandler(window, "load", function (event) {
+            let div = document.getElementById("muDiv");
+            EventUtil.addHandler(div, "contextmenu", function (event) {
+                event = EventUtil.getEvent(event);
+                EventUtil.preventDefault(event);
+                let menu = document.getElementById("muMenu");
+                menu.style.left = event.clientX + "px";
+                menu.style.top = event.clientY + "px";
+                menu.style.visibility = "visible";
+            });
+            EventUtil.addHandler(document, "click", function (event) {
+                document.getElementById("muMenu").style.visibility = "hidden";
+            });
+            EventUtil.addHandler(window, "beforeunload", function (event) {
+                event = EventUtil.getEvent(event);
+                let message = "I am really going to miss you if you go.";
+                event.returnValue = message;
+                return message;
+            })
+        });
+    </script>
+</body>
+</html>

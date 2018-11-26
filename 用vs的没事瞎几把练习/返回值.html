@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap{
+            width: 100px;
+            height: 100px;
+            margin: 50px auto;
+            padding: 10px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <p id="p1"><b>Hello</b> World!</p>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <script>
+        let div = document.getElementById("wrap");
+        let filter = function (node) {
+            return node.tagName.toLowerCase() == "li" ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+        };
+        let iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT, filter, false);
+        let node = iterator.nextNode();
+        while (node !== null) {
+            console.log(node.tagName);
+            node = iterator.nextNode();
+        }
+
+        let p1 = document.getElementById("p1"),
+            range = document.createRange(),
+            helloNode = p1.firstChild.firstChild,
+            worldNode = p1.lastChild;
+        range.setStart(helloNode, 1);   //range.setStart(helloNode, 2)
+        range.setEnd(worldNode, 2);   //range.setEnd(worldNode, 3)
+        
+
+        function m() {
+            let a = 1,
+                b = 5;
+            return a + b;
+        }
+
+        console.log(m());
+    </script>
+</body>
+</html>
