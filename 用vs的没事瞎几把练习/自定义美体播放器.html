@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="addHandler().js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", serif;
+            user-select: none;
+        }
+        body, dl, dd, p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="mediaplayer">
+        <div class="video">
+            <video id="player" src="0001.哔哩哔哩-药水哥的狠话语录-liu4_BiliBili[超清版].mp4" poster="img/1.jpg" width="300" height="200">Video player not available.</video>
+        </div>
+        <div class="controls">
+            <input type="button" value="Play" id="video-btn"/>
+            <span id="curtime">0</span>/<span id="duration">0</span>
+        </div>
+    </div>
+<script type="text/javascript">
+    let player = document.getElementById("player"),
+        btn = document.getElementById("video-btn"),
+        curtime = document.getElementById("curtime"),
+        duration = document.getElementById("duration");
+    duration.innerHTML = player.duration;
+    EventUtil.addHandler(btn,"click",function (event) {
+        if (player.paused){
+            player.play();
+            btn.value = "Pause";
+        }else {
+            player.pause();
+            btn.value = "Play";
+        }
+    });
+    setInterval(function () {
+        curtime.innerHTML = player.currentTime;
+    },250);
+</script>
+</body>
+</html>
