@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", serif;
+            user-select: none;
+        }
+        body, dl, dd, p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    function outer() {
+        var a = 3;
+        function inner() {
+            a++;
+            console.log(a);
+        }
+        return inner;
+    }
+    var result = outer();
+    result();  //4
+    result();  //5
+    //inner和outer里面的a是一个变量
+</script>
+</body>
+</html>

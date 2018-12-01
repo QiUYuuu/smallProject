@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", serif;
+            user-select: none;
+        }
+        body, dl, dd, p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        var b = 1;
+        function outer() {
+            var b = 2;
+            function inner() {
+                b++;
+                var b = 3;
+                console.log(b);
+            }
+            inner();
+            return b;
+        }
+        alert(outer());    //2
+        //因为闭包，inner能引用outer里面的b，outer只能是自身的或者上级的b，所以inner里面b为3，outer是2
+    </script>
+</body>
+</html>

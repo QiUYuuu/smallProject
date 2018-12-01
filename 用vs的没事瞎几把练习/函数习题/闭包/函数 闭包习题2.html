@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.3.1/jquery-3.3.1.js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", serif;
+            user-select: none;
+        }
+
+        body, dl, dd, p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    function o() {
+        var a = 3;
+        function p() {
+            a++;
+            console.log(a);
+        }
+        return p;
+    }
+    var result1 = o();
+    var result2 = o();
+    result1();   //4
+    result2();   //4
+    //var之后两个函数时相互独立的，所以是两个4    个人认为！！！！
+</script>
+</body>
+</html>
