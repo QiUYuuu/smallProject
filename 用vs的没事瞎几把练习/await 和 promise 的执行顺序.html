@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", serif;
+            user-select: none;
+        }
+
+        body, dl, dd, p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    async function async1() {
+        console.log( 'async1 start' );
+        await async2();
+        console.log( 'async1 end' );
+    }
+    async function async2() {
+        console.log( 'async2' );
+    };
+    console.log( 'script start' );
+    setTimeout( function () {
+        console.log( 'setTimeout' );
+    }, 0 );
+    async1();
+    new Promise( function ( resolve ) {
+        console.log( 'promise1' );
+        resolve();
+    } ).then( function () {
+        console.log( 'promise2' );
+    } );
+    console.log( 'script end' );
+
+
+    /*根据自己理解
+        带async的函数执行后会返回带有promise,只不过就是把普通的返回值包装了一下
+        先从上到下执行同步函数，先执行console.log( 'script start' );然后执行async1();->console.log( 'async1 start' );然后执行await async2();
+        async是异步执行，await执行是从右向左，也就是先执行await后边这个宏任务1(async2()->console.log( 'async2' ))，然后再看他右边这个东西(函数啥的)的返回值，
+        如果返回值是async之类的带promise的返回值，那么就先阻碍async里面的宏任务，执行await后面的promise宏任务1(函数)，并且把then后面的函数推入微任务中(微任务会在宏任务都执行完之后再按照顺序执行),
+        promise宏任务执行完之后((console.log( 'promise1' );)，然后执行resolve(这玩意不知道是啥，反正啥都没输出，不说了，promise啥的暂时不懂，先不说promise)，promise执行完然后执行async外面的宏任务console.log( 'script end' )，
+        看到settimeout直接推入宏任务2，宏任务1里面的所有宏任务和微任务执行完再执行宏任务2
+        执行完宏任务1前面的宏任务后执行宏任务1里面的微任务console.log( 'promise2' );这个执行完真正执行完await async2()，然后执行async1后面的语句console.log( 'async1 end' );，这样才算是把宏任务1执行完，
+        然后执行宏任务2console.log( 'setTimeout' );；
+        所以最后输出      script start -> async1 start -> async2 -> promise1 -> script end -> promise2 -> async1 end  -> setTimeout
+                         |-------------------------------------------宏任务1----------------------------------------|  |-宏任务2-|
+                                                                                            |-宏1微任务-|
+    具体看  http://web.jobbole.com/95515/
+         */
+</script>
+</body>
+</html>
