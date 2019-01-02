@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", serif;
+            user-select: none;
+        }
+
+        body, dl, dd, p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    var containsDuplicate = function(nums) {
+        if(nums.length > 1){
+            let len = nums.length;
+            for(let i = 0;i<len;i++){
+                let a = nums.splice(i,1)*1.;
+                let exp = new RegExp(a);
+                if ( exp.test(nums) ){
+                    return true;
+                } else {
+                    continue;
+                }
+            }
+        }else {
+            console.log(0);
+            //return false;
+        }
+    };
+    let num = [1,2,4,6,3,13,4,6,4,3,13];
+    console.log(containsDuplicate(num));
+</script>
+</body>
+</html>
