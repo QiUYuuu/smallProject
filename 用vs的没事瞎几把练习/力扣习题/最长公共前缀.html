@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", serif;
+            user-select: none;
+        }
+
+        body, dl, dd, p, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        ol, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        img {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    //大佬写的  68ms
+    var longestCommonPrefix = function (strs) {
+        let ans = strs.length > 0 ? strs[0] : "";
+        for (let i = 1; i < strs.length; i++) {
+            if (!strs[i].startsWith(ans)) {
+                for (let j = 0; j < ans.length; j++) {
+                    if (ans[j] != strs[i][j]) {
+                        ans = ans.slice(0, j);
+                        console.log(ans);
+                    }
+                }
+            }
+        }
+        return ans;
+    };
+
+    //另一个大佬写的  72ms   这个比较好理解
+    var longestCommonPrefix = function(strs) {
+        let arr = [];
+        let result = "";
+        for(let i = 0; i < strs.length; i++){
+            arr.push(strs[i].length)
+        }
+        arr.sort((a, b) => a - b);
+        for(let j = 0; j < arr[0]; j++){
+            let s = strs[0][j];
+            if(strs.every(val => val[j] == s)){
+                result += s
+            }else{
+                break;
+            }
+        }
+        return result
+    };
+    console.log(longestCommonPrefix(["flower","flow","flight"]));
+</script>
+</body>
+</html>
